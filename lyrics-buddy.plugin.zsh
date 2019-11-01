@@ -1,0 +1,1 @@
+source ./lyrics-buddy.zsh
