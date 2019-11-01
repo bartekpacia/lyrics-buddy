@@ -1,1 +1,1 @@
-source ./lyrics-buddy.zsh
+source ${0:A:h}/lyrics-buddy.zsh
