@@ -28,8 +28,8 @@ async function run(url) {
 
   songHtml = await page.content();
 
-  const contents = $("div.tekst > div.song-text", songHtml).text();
-  contents.replace("Poznaj historię zmian tego tekstu", "");
+  let contents = $("div.tekst > div.song-text", songHtml).text();
+  contents = contents.replace("Poznaj historię zmian tego tekstu", "");
 
   console.log(contents);
   console.log("3/3 song text printed");
