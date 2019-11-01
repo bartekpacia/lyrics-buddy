@@ -1,0 +1,11 @@
+{
+  "name": "lyrics-buddy",
+  "version": "1.0.0",
+  "description": "Small utility for Oh-My-Zsh spotify plugin. Gets the lyrics of track currently being played\"",
+  "main": "lb.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bartek Pacia",
+  "license": "MIT"
+}
