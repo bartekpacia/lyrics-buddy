@@ -4,15 +4,10 @@ const $ = require("cheerio");
 const track = process.argv.slice(2);
 console.log(track);
 
-// const executablePath = "/Applications/Google Chrome.app";
 const executablePath = puppeteer.executablePath();
 
-const host = "www.google.com";
-const port = 8080;
-
 async function run(url) {
-  // const browser = await puppeteer.connect({ executablePath, browserURL: `http://${host}:${port}` });
-  const browser = await puppeteer.launch({ executablePath, headless: false });
+  const browser = await puppeteer.launch({ executablePath, headless: true });
   const page = await browser.newPage();
   await page.goto(url);
 
@@ -21,7 +16,7 @@ async function run(url) {
     page.evaluate(selector => document.querySelector("input.search-send").click()),
     page.waitForNavigation({ waitUntil: "networkidle2" })
   ]);
-  console.log("1st navigation occurred");
+  console.log("1/3 search results ready");
 
   await Promise.all([
     page.evaluate(selector =>
@@ -29,11 +24,15 @@ async function run(url) {
     ),
     page.waitForNavigation({ waitUntil: "networkidle0" })
   ]);
-  console.log("2nd navigation occurred");
+  console.log("2/3 song page loaded");
 
-  // textChildren = $("div.tekst > div.song-text", songHtml).children();
+  songHtml = await page.content();
 
-  // console.log(textChildren);
+  const contents = $("div.tekst > div.song-text", songHtml).text();
+  contents.replace("Poznaj historię zmian tego tekstu", "");
+
+  console.log(contents);
+  console.log("3/3 song text printed");
 }
 
 run("https://www.tekstowo.pl");
