@@ -17,7 +17,7 @@ async function run(url) {
     page.evaluate(selector => document.querySelector("input.search-send").click()),
     page.waitForNavigation({ waitUntil: "networkidle2" })
   ]);
-  console.log("1/3 search results ready");
+  console.log(`1/3 search results ready. ${page.url()}`);
 
   await Promise.all([
     page.evaluate(selector =>
@@ -33,7 +33,7 @@ async function run(url) {
   contents = contents.replace("Poznaj historię zmian tego tekstu", "");
 
   console.log(contents);
-  console.log("3/3 song text printed");
+  console.log(`3/3 song text printed. ${page.url()}`);
 
   process.exit(0);
 }
