@@ -1,7 +1,8 @@
 const puppeteer = require("puppeteer");
 const $ = require("cheerio");
 
-const track = process.argv.slice(2);
+const track = process.argv[2];
+const artist = process.argv[3];
 
 const executablePath = puppeteer.executablePath();
 
@@ -11,6 +12,7 @@ async function run(url) {
   await page.goto(url);
 
   await page.type("input[name=search-title]", track);
+  await page.type("input[name=search-artist]", artist);
   await Promise.all([
     page.evaluate(selector => document.querySelector("input.search-send").click()),
     page.waitForNavigation({ waitUntil: "networkidle2" })
