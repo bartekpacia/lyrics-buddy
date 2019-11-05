@@ -11,19 +11,24 @@ async function run(url) {
   const page = await browser.newPage();
   await page.goto(url);
 
-  await page.type("input[name=search-title]", track);
-  await page.type("input[name=search-artist]", artist);
-  await Promise.all([
-    page.evaluate(selector => document.querySelector("input.search-send").click()),
-    page.waitForNavigation({ waitUntil: "networkidle2" })
-  ]);
   console.log(`1/3 search results ready. ${page.url()}`);
+
+  const html = await page.content();
+
+  let songs = [];
+  const titles = $("div.content > div.box-przeboje > a.title", html)
+    .contents()
+    .map((index, element) => songs.push({ index, data: element.data }));
+
+  for (let song of songs) {
+    console.log(song);
+  }
 
   await Promise.all([
     page.evaluate(selector =>
       document.querySelector("div.content > div.box-przeboje > a.title").click()
     ),
-    page.waitForNavigation({ waitUntil: "networkidle0" })
+    page.waitForNavigation({ waitUntil: "networkidle2" })
   ]);
   console.log("2/3 song page loaded");
 
@@ -38,4 +43,4 @@ async function run(url) {
   process.exit(0);
 }
 
-run("https://www.tekstowo.pl");
+run(`https://www.tekstowo.pl/szukaj,wykonawca,${artist},tytul,${track}.html`);
