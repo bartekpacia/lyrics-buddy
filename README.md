@@ -12,14 +12,15 @@ That's why I've created this simple terminal utility.
 ## Prerequisites
 
 - MacOS
+- [NodeJS](https://nodejs.org/en/) installed
 - zsh and [oh-my-zsh](https://ohmyz.sh/) installed
 - `spotify` plugin for oh-my-zsh loaded
 
 ## Installing
 
 - Download this repository and put it into your `$ZSH/custom/plugins` folder
-- Run `npm install` in `ZSH/custom/plugins/lyrics-buddy`
-- Add `lyrics-buddy` to plugins in your `.zshrc`
+- Run `npm install` in `$ZSH/custom/plugins/lyrics-buddy`
+- Add `lyrics-buddy` to plugins in your `~/.zshrc`
 
 ## Usage
 

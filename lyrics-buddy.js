@@ -11,9 +11,6 @@ async function run(url) {
   const browser = await puppeteer.launch({ executablePath, headless: true });
   const page = await browser.newPage();
   await page.goto(url);
-
-  console.log(`1/3 search results ready. ${page.url()}`);
-
   const html = await page.content();
 
   let songs = [];
@@ -39,7 +36,6 @@ async function run(url) {
     }, songIndex),
     page.waitForNavigation({ waitUntil: "networkidle2" })
   ]);
-  console.log("2/3 song page loaded");
 
   songHtml = await page.content();
 
@@ -47,7 +43,7 @@ async function run(url) {
   contents = contents.replace("Poznaj historię zmian tego tekstu", "");
 
   console.log(contents);
-  console.log(`3/3 song text printed. ${page.url()}`);
+  console.log(`Direct url to lyrics: ${page.url()}`);
 
   process.exit(0);
 }
