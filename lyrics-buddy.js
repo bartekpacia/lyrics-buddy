@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const readline = require("readline-sync");
 const $ = require("cheerio");
 
 const track = process.argv[2];
@@ -16,18 +17,26 @@ async function run(url) {
   const html = await page.content();
 
   let songs = [];
-  const titles = $("div.content > div.box-przeboje > a.title", html)
+  $("div.content > div.box-przeboje > a.title", html)
     .contents()
-    .map((index, element) => songs.push({ index, data: element.data }));
+    .map((index, element) => {
+      songs.push({ index: index + 1, title: element.data });
+    });
 
-  for (let song of songs) {
-    console.log(song);
-  }
+  // Crop less probable matches
+  songs = songs.slice(0, 9);
+
+  console.log(`${songs.length} sound songs, a few first are displayed:`);
+  songs.forEach(song => console.log(`${song.index} -> ${song.title}`));
+  let songIndex = readline.questionInt("Enter the index of the song you want to display: ");
+  songIndex = songIndex - 1; // Compensate that songs start from 1 (looks better to user)
+  console.log(`-> ${songs[songIndex].title}`);
 
   await Promise.all([
-    page.evaluate(selector =>
-      document.querySelector("div.content > div.box-przeboje > a.title").click()
-    ),
+    page.evaluate(index => {
+      const titles = document.querySelectorAll("div.content > div.box-przeboje > a.title");
+      titles[index].click();
+    }, songIndex),
     page.waitForNavigation({ waitUntil: "networkidle2" })
   ]);
   console.log("2/3 song page loaded");
