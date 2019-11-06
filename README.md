@@ -30,7 +30,8 @@ That's why I've created this simple terminal utility.
 ## How is it made?
 
 It's basically a simple web scraper for [Tekstowo](https://www.tekstowo.pl),
-a big Polish site containing lyrics of many songs.
+a big Polish site containing lyrics of many songs. (Of course, the fact that
+the site is Polish doesn't matter at all, all the lyrics are in English)
 
 When you type `lyrics`, it uses spotify plugin for oh-my-zsh and
 performs a search on Tekstowo.
