@@ -1,3 +1,9 @@
+### ⚠️ Project discontinued
+
+I created this solely for my personal use case and it does its job. However, there's much more mature and advanced project I've got to know about recently. It's called [SwagLyrics](https://github.com/SwagLyrics/SwagLyrics-For-Spotify) and it does everything what lyrics-buddy does and more. What's more, it's available for operating systems!
+
+_I highly encourage you to use SwagLyrics instead of lyrics-buddy._
+
 # Lyrics buddy
 
 Laziness ftw!
