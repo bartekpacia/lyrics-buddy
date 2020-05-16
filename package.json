@@ -14,10 +14,10 @@
     "puppeteer": "^1.20.0",
     "puppeteer-core": "^1.20.0",
     "readline-sync": "^1.4.10",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.4"
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
   },
   "devDependencies": {
-    "@types/cheerio": "^0.22.13"
+    "@types/cheerio": "^0.22.18"
   }
 }
